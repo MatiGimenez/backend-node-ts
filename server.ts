@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import app from "./src/app";
 const PORT: number = 3000;
 
