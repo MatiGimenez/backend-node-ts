@@ -9,5 +9,5 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
   },
-  "lib": ["es2021"]
+  "lib": ["es6", "es2021", "DOM"]
 }
