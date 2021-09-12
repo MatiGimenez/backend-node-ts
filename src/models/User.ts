@@ -4,26 +4,29 @@ import {
 	Entity,
 	PrimaryGeneratedColumn,
 	UpdateDateColumn
-} from 'typeorm';
+} from "typeorm";
 
 @Entity()
 export class User {
-	@PrimaryGeneratedColumn('uuid')
+	@PrimaryGeneratedColumn("uuid")
 	id: string;
 
-	@Column('varchar', { length: 16 })
+	@Column("varchar", { length: 16 })
 	username: string;
 
-	@Column('varchar', { length: 120 })
+	@Column("varchar", { length: 120 })
 	password: string;
 
-	@Column('varchar', { length: 120, unique: true })
+	@Column("varchar", { length: 120 })
+	salt: string;
+
+	@Column("varchar", { length: 120, unique: true })
 	email: string;
 
-	@Column('integer', { nullable: true })
+	@Column("integer", { nullable: true })
 	age: number;
 
-	@Column('datetime', { nullable: true })
+	@Column("datetime", { nullable: true })
 	birthDate: Date;
 
 	@CreateDateColumn()
