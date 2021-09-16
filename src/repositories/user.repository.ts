@@ -7,11 +7,19 @@ export class UserRepository
 	extends AbstractRepository<User>
 	implements IUserRepository
 {
-	exists(t: User): Promise<boolean> {
-		throw new Error("Method not implemented.");
+	async exists(t: User): Promise<boolean> {
+		const user: User = await this.repository.findOne({
+			where: [{ email: t.email }, { username: t.username }]
+		});
+
+		if (!user) {
+			return false;
+		}
+
+		return true;
 	}
 
-	delete(t: User): Promise<any> {
+	async delete(t: User): Promise<any> {
 		throw new Error("Method not implemented.");
 	}
 
