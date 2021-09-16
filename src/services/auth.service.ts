@@ -5,16 +5,29 @@ import Validator from "validator";
 import { User } from "../models/User";
 import { AuthenticationHelper } from "./helpers/auth.helper";
 import { IAuthenticationService } from "./interfaces/IAuthenticationService";
+import { UserMapper } from "../mappers/user.mapper";
 
 export class AuthenticationService implements IAuthenticationService {
 	private userRepository: UserRepository;
+	private mapper: UserMapper;
 
 	constructor() {
 		this.userRepository = getCustomRepository(UserRepository);
+		this.mapper = new UserMapper();
 	}
 
-	register(user: UserDTO): Promise<any> {
-		throw new Error("Method not implemented.");
+	async register(user: UserDTO): Promise<any> {
+		//TODO: validar datos
+		const exists: boolean = await this.userRepository.exists({
+			username: user.username,
+			email: user.email
+		} as User);
+
+		if (exists) {
+			throw new Error("User already exists");
+		}
+
+		this.userRepository.save(this.mapper.toEntity(user));
 	}
 
 	async login({ username, password }: UserLogin) {
