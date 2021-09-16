@@ -1,12 +1,13 @@
 import { createConnection } from "typeorm";
+import {CONFIG} from '../config'
 
 export default createConnection({
 	type: "mariadb",
-	host: "localhost",
-	port: 3306,
-	username: "root",
-	password: "admin",
-	database: "test",
+	host: CONFIG.DB_HOST,
+	port: CONFIG.DB_PORT,
+	username: CONFIG.DB_USER,
+	password: CONFIG.DB_PASS,
+	database: CONFIG.DB_NAME,
 	entities: [process.cwd() + "/src/models/*.ts"],
 	synchronize: true
 });
