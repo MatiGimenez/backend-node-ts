@@ -7,5 +7,5 @@ export interface UserDTO {
 	username: string;
 	password: string;
 	email: string;
-	birthDate: Date;
+	birthDate: string;
 }

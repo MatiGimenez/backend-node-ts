@@ -9,7 +9,7 @@ export class UserMapper implements Mapper<User> {
 		user.username = raw.username;
 		user.password = raw.password;
 		user.email = raw.email;
-		user.birthDate = raw.birthDate;
+		user.birthDate = new Date(raw.birthDate);
 		user.age = AuthenticationHelper.calculateAge(raw.birthDate);
 		return user;
 	}

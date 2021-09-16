@@ -22,14 +22,12 @@ export class AuthenticationHelper {
 		return this.encryptPassword(password, salt) === decodedOne;
 	}
 
-	public static calculateAge(dateString: Date): number {
+	public static calculateAge(dateString: string): number {
 		const today: Date = new Date();
-		let age: number = today.getFullYear() - dateString.getFullYear();
-		const monthDiff: number = today.getMonth() - dateString.getMonth();
-		if (
-			monthDiff < 0 ||
-			(monthDiff === 0 && today.getDate() < dateString.getDate())
-		)
+		const birth: Date = new Date(dateString);
+		let age: number = today.getFullYear() - birth.getFullYear();
+		const monthDiff: number = today.getMonth() - birth.getMonth();
+		if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birth.getDate()))
 			age--;
 		return age;
 	}
